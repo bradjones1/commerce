@@ -362,7 +362,7 @@ class ProfileSelect extends RenderElement {
         $profile = call_user_func($element['#reuse_profile_source'], $element, $form_state, $form_state->getCompleteForm());
       }
       $element['#profile'] = $profile;
-    } elseif (isset($storage['pane_' . $pane_id]) && in_array($storage['pane_' . $pane_id]['mode'], ['new', 'edit'])) {
+    } elseif (isset($storage['pane_' . $pane_id]['mode']) && in_array($storage['pane_' . $pane_id]['mode'], ['new', 'edit'])) {
       $form_display = EntityFormDisplay::collectRenderDisplay($element['#profile'], 'default');
       $form_display->extractFormValues($element['#profile'], $element, $form_state);
       $element['#profile']->save();
