@@ -109,6 +109,8 @@ class ProfileSelect extends RenderElement {
     $default_profile_id = NULL;
     // Fetch all profiles of the user for an addressbook functionality.
     $profile_uid = $element['#default_value']->getOwnerId();
+    $profiles = [];
+
     // Anonymous users don't get an addressbook.
     if ($profile_uid) {
       $profile_ids = \Drupal::service('entity.query')
@@ -158,6 +160,10 @@ class ProfileSelect extends RenderElement {
       $default_profile = $element['#default_value'];
       $default_profile_id = $default_profile->id();
       $bundle = $default_profile->bundle();
+    }
+
+    if (empty($profiles) && !empty($default_profile)) {
+      $mode = 'edit';
     }
 
     $ajax_wrapper_id = Html::getUniqueId('profile-select-ajax-wrapper');
